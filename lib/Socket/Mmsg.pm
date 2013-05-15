@@ -18,7 +18,7 @@ our @EXPORT = (
 	'recvmmsg'
 );
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 require XSLoader;
 XSLoader::load('Socket::Mmsg', $VERSION);
@@ -70,7 +70,7 @@ foreach my $pkt(@$recv_buffer){
 
 =head1 DESCRIPTION
 
-Socket::Mmsg - Is wrapper around two Linux-specific syscalls : recvmmsg and sendmmsg.
+C<Socket::Mmsg> - Is wrapper around two Linux-specific syscalls : recvmmsg and sendmmsg.
 Basically it was made for using in gather-type scripts (like snmp requests on huge number of devices),
 for more info you can read man pages of recvmmsg(2) and sendmmsg(2) syscalls.
 
@@ -85,28 +85,28 @@ Returns number of sent messages and removes sent messages from array.
 Number of sent messages is limited by UIO_MAXIOV (for linux is 1024).
 Structure of array is :
 
-$array_ref = [
+C<$array_ref = [
      [sockaddr_in(), $message_string]
      ...
-];
-
-=over 4
+];>
 
 =item recvmmsg SOCKET, NUMBER_OF_MSG, BUFFER_FOR_EACH_MSG, TIMEOUT_FLOAT
 
   Receive NUMBER_OF_MSG from specified SOCKET.
 Return $array_ref with recieved messages in format :
 
-$array_ref = [
+C<$array_ref = [
      [sockaddr_in(), $message_string]
      ...
-];
+];>
 
 Syscall is running with MSG_WAITFORONE flag.
 
+=back
+
 =head2 EXPORT
 
-Socket::Mmsg exports sendmmsg and recvmmsg by default into the caller's namespace.
+c<Socket::Mmsg> exports sendmmsg and recvmmsg by default into the caller's namespace.
 
 =head1 SEE ALSO
 
